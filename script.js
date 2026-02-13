@@ -39,8 +39,8 @@ const toastMessage = document.getElementById('toast-message');
 
 const renderBasicInfo = () => {
   const { name, description } = BasicJavaScriptCourseData;
-entityName.textContent = name;
-entityDescription.innerHTML = `<p>${description}</p>`;
+  entityName.textContent = name;
+  entityDescription.innerHTML = `<p>${description}</p>`;
 };
 
 const renderItems = (showAll = false) => {
