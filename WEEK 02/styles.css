@@ -1,0 +1,168 @@
+/* ===================================
+   Variables CSS y Reset
+   =================================== */
+
+:root {
+  --color-primary: #2563eb;   
+  --color-secondary: #1e40af;
+  --color-success: #16a34a;
+  --color-warning: #f59e0b;
+  --color-danger: #dc2626;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #1e3a8a, #4f46e5);
+  min-height: 100vh;
+  padding: 30px;
+  color: #1f2937;
+}
+
+/* ===================================
+   Container
+   =================================== */
+
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+/* ===================================
+   Header
+   =================================== */
+
+.header {
+  background: white;
+  padding: 25px;
+  border-radius: 14px;
+  text-align: center;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.header h1 {
+  font-size: 30px;
+}
+
+.subtitle {
+  color: #6b7280;
+  margin-top: 5px;
+}
+
+.stats-summary {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #1e3a8a;
+}
+
+/* Cards */
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* Form */
+.form-group {
+  margin-bottom: 12px;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 9px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+/* Buttons */
+button {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background: #4f46e5;
+  color: white;
+  margin-top: 10px;
+}
+
+.btn-primary:hover {
+  background: #4338ca;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid #ef4444;
+  color: #ef4444;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filters select,
+.filters input {
+  flex: 1;
+  min-width: 180px;
+}
+
+/* List */
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item {
+  background: #f9fafb;
+  padding: 14px;
+  border-radius: 10px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  border-left: 6px solid #4f46e5;
+}
+
+.item.inactive {
+  opacity: 0.5;
+}
+
+.item-name {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.item-actions button {
+  margin-left: 5px;
+}
+
+/* Empty */
+.empty-state {
+  text-align: center;
+  margin-top: 15px;
+  color: #6b7280;
+}
