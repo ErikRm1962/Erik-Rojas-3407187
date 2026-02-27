@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+    <title>📚 Sistema de Bibliotecas Digitales</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    
+    <div class="app-container">
+      <!-- Header -->
+      <header class="header">
+        <h1>📚 Sistema de Bibliotecas Digitales</h1>
+        <p class="subtitle">Gestión de libros, lectores y préstamos</p>
+      </header>
+
+      <!-- Navigation Tabs -->
+      <nav class="tabs">
+        <button class="tab-btn active" data-tab="catalog">
+          📚 Libros
+        </button>
+        <button class="tab-btn" data-tab="users">
+          👥 Lectores
+        </button>
+        <button class="tab-btn" data-tab="transactions">
+          🔄 Prestamos
+        </button>
+        <button class="tab-btn" data-tab="stats">
+          📊 Reportes
+        </button>
+      </nav>
+
+      <!-- Tab Content -->
+      <main class="tab-content">
+        <!-- Catalog Tab -->
+        <section id="catalog" class="tab-panel active">
+          <div class="panel-header">
+            <h2>📋 Catálogo de Elementos</h2>
+            <div class="actions">
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Buscar por nombre..."
+              />
+              <select id="filter-type">
+                <option value="all">Todos las categorías</option>
+                <option value="Novela">Novela</option>
+                <option value="Ciencia">Ciencia</option>
+                <option value="Historia">Historia</option>
+                <option value="Tecnologia">Tecnología</option>
+              </select>
+              <select id="filter-status">
+                <option value="all">Todos</option>
+                <option value="active">Activos</option>
+                <option value="inactive">Inactivos</option>
+              </select>
+              <button id="add-item-btn" class="btn btn-primary">
+                + Agregar
+              </button>
+            </div>
+          </div>
+          <div id="item-list" class="items-grid">
+            <!-- Los elementos se renderizarán aquí con JavaScript -->    
+          </div>
+          <div id="empty-state" class="empty-state" style="display: none;">
+            <p>📭 No hay elementos en el catálogo</p>
+            <p class="hint">Agrega tu primer elemento usando el botón superior</p>
+          </div>
+        </section>
+
+        <!-- Users Tab -->
+        <section id="users" class="tab-panel">
+          <div class="panel-header">
+            <h2>👥 Usuarios del Sistema</h2>
+            <div class="actions">
+              <input
+                type="text"
+                id="search-users"
+                placeholder="Buscar usuario..."
+              />
+              <select id="filter-role">
+                <option value="all">Todos los roles</option>
+                <option value="Estudiante">Estudiante</option>
+                <option value="Profesor">Profesor</option>
+                <option value="Administrador">Administrador</option>
+              </select>
+              <button id="add-user-btn" class="btn btn-primary">
+                + Agregar Usuario
+              </button>
+            </div>
+          </div>
+          <div id="user-list" class="users-grid">
+            <!-- Los usuarios se renderizarán aquí -->
+          </div>
+        </section>
+
+        <!-- Transactions Tab -->
+        <section id="transactions" class="tab-panel">
+          <div class="panel-header">
+            <!-- TODO: Cambia "Transacciones" por el término de tu dominio -->
+            <h2>🔄 Historial de Transacciones</h2>
+          </div>
+          <div id="transaction-list" class="transactions-list">
+            <!-- Las transacciones se renderizarán aquí -->
+          </div>
+        </section>
+
+        <!-- Stats Tab -->
+        <section id="stats" class="tab-panel">
+          <div class="panel-header">
+            <h2>📊 Estadísticas del Sistema</h2>
+          </div>
+          <div id="stats-container" class="stats-grid">
+            <div class="stat-card">
+              <span class="stat-value" id="stat-total">0</span>
+              <span class="stat-label">Total Elementos</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-value" id="stat-active">0</span>
+              <span class="stat-label">Activos</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-value" id="stat-inactive">0</span>
+              <span class="stat-label">Inactivos</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-value" id="stat-users">0</span>
+              <span class="stat-label">Usuarios</span>
+            </div>
+          </div>
+          <div id="stats-details" class="stats-details">
+            <!-- Estadísticas detalladas por tipo -->
+          </div>
+        </section>
+      </main>
+
+      <!-- Modal para agregar/editar elementos -->
+      <div id="item-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 id="modal-title">Agregar Elemento</h3>
+            <button class="close-btn" id="close-modal">&times;</button>
+          </div>
+          <form id="item-form" class="modal-form">
+            <!-- Selector de tipo -->
+            <div class="form-group">
+              <label for="item-type">Tipo de Elemento</label>
+              <select id="item-type" required>
+                <option value="">Selecciona una categoría</option>
+                <option value="Novela">Novela</option>
+                <option value="Ciencia">Ciencia</option>
+                <option value="Historia">Historia</option>
+                <option value="Tecnologia">Tecnología</option>
+              </select>
+            </div>
+
+            <!-- Campos base -->
+            <div class="form-group">
+              <label for="item-name">Nombre *</label>
+              <input type="text" id="item-name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="item-location">Estanteria *</label>
+              <input type="text" id="item-location" required />
+            </div>
+
+            <!--
+              TODO: Agrega campos específicos según el tipo seleccionado
+              Puedes mostrar/ocultar campos dinámicamente con JavaScript
+            -->
+            <div id="dynamic-fields">
+              <!-- Campos dinámicos según el tipo -->
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Guardar</button>
+              <button type="button" class="btn btn-secondary" id="cancel-btn">
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Modal para agregar usuarios -->
+      <div id="user-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Agregar Usuario</h3>
+            <button class="close-btn" id="close-user-modal">&times;</button>
+          </div>
+          <form id="user-form" class="modal-form">
+            <div class="form-group">
+              <label for="user-role">Rol</label>
+              <select id="user-role" required>
+                <option value="">Selecciona un rol</option>
+                <option value="Estudiante">Estudiante</option>
+                <option value="Profesor">Profesor</option>
+                <option value="Administrador">Administrador</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="user-name">Nombre *</label>
+              <input type="text" id="user-name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="user-email">Email *</label>
+              <input type="email" id="user-email" required />
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Guardar</button>
+              <button type="button" class="btn btn-secondary" id="cancel-user-btn">
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script principal -->
+    <script src="script.js"></script>
+  </body>
+</html>
